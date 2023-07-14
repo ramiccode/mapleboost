@@ -1,0 +1,77 @@
+/* CSS Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.service-packages {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.service-package {
+  text-align: center;
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.cta-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cta-section p {
+  margin-bottom: 10px;
+}
+
+.cta-email {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+  /* Responsive CSS Styles for screens up to 768px */
+  .container {
+    padding: 10px;
+  }
+
+  .service-package {
+    width: 100%;
+  }
+}
