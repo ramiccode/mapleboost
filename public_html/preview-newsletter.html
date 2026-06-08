@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Newsletter preview — MapleBoost</title>
+<style>
+  :root{ --ink:#1f2937; --muted:#64748b; --line:#e5e7eb; --bg-tint:#f9fafb; }
+  body{ margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); }
+  .container{ max-width:1080px; margin:0 auto; padding:0 20px; }
+  .note{ background:#fff8e1; border-bottom:1px solid #f0e0a0; padding:10px 0; font-size:.9rem; color:#7a5b00; }
+  .newsletter-band{ background:var(--bg-tint); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:40px 0; }
+  .newsletter-inner{ max-width:640px; text-align:center; }
+  .newsletter-inner h2{ margin:0 0 8px; font-size:1.4rem; }
+  .newsletter-inner p{ margin:0 auto 18px; max-width:520px; color:var(--muted); }
+  .formkit-fields{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+  .formkit-input{ flex:1 1 240px; padding:12px; font-size:15px; border:1px solid #e3e3e3; border-radius:4px; }
+  .formkit-submit{ border:0; cursor:pointer; padding:12px 24px; font-size:15px; }
+  .formkit-powered-by-convertkit-container{ margin-top:12px; }
+</style>
+</head>
+<body>
+<div class="note"><div class="container">Preview only — this standalone file inlines the form so you can see it without SSI. The real form lives in <code>/inc/footer.html</code> and shows site-wide once deployed.</div></div>
+
+<section class="newsletter-band" aria-labelledby="newsletter-heading">
+  <div class="container newsletter-inner">
+    <h2 id="newsletter-heading">Start &amp; grow your Canadian business</h2>
+    <p>Get our best guides, tools, and money-saving picks for founders in Canada. Free. No spam. Unsubscribe anytime.</p>
+    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+    <form action="https://app.kit.com/forms/9527924/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9527924" data-uid="da23d0e022" data-format="inline" data-version="5">
+      <div data-style="clean">
+        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+          <div class="formkit-field">
+            <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required type="email" style="color:#000;border-color:#e3e3e3;border-radius:4px;font-weight:400;">
+          </div>
+          <button data-element="submit" class="formkit-submit" style="color:#fff;background-color:rgb(214,31,38);border-radius:4px;font-weight:700;"><span>Subscribe</span></button>
+        </div>
+        <div class="formkit-powered-by-convertkit-container">
+          <a href="https://kit.com/features/forms" data-element="powered-by" target="_blank" rel="nofollow noopener" style="color:#999;font-size:12px;text-decoration:none;">Built with Kit</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+</body>
+</html>

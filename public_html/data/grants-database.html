@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<!--#include virtual="/inc/head.html" -->
+<title>Canadian Small Business Grants Database (2026) | MapleBoost</title>
+<meta name="description" content="Searchable database of federal, provincial, and major regional grants for Canadian small businesses. Filter by province, stage, and category. Updated quarterly.">
+<link rel="canonical" href="https://mapleboost.ca/data/grants-database">
+
+<meta property="og:title" content="Canadian Small Business Grants Database | MapleBoost">
+<meta property="og:description" content="Searchable database of federal, provincial, and major regional grants.">
+<meta property="og:url" content="https://mapleboost.ca/data/grants-database">
+
+<meta name="twitter:title" content="Canadian Small Business Grants Database">
+<meta name="twitter:description" content="Federal, provincial, regional grants for small businesses.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Canadian Small Business Grants Database 2026",
+  "url": "https://mapleboost.ca/data/grants-database",
+  "description": "Federal, provincial, and regional grants available to Canadian small businesses.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-06-04"
+}
+</script>
+
+<style>
+  .grants-toolbar { display:flex; flex-wrap:wrap; gap:8px; margin: 20px 0 12px; }
+  .grants-toolbar input, .grants-toolbar select {
+    padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; font-family: var(--sans); font-size: .95rem;
+  }
+  .grants-toolbar input { flex: 1 1 240px; min-width: 200px; }
+  .grants-grid { display: grid; gap: 16px; margin: 8px 0 24px; }
+  .grant-card {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px;
+  }
+  .grant-card h3 { margin: 0 0 4px; font-size: 1.1rem; font-family: var(--sans); }
+  .grant-meta { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
+  .grant-meta span { display: inline-block; margin-right: 12px; }
+  .grant-tag { display:inline-block; background: var(--line-2); color: var(--ink-2); padding: 2px 8px; border-radius: 4px; font-size: .75rem; margin-right: 4px; }
+  .grant-card p { margin: 0 0 8px; font-size: .95rem; }
+  .grant-empty { padding: 24px; text-align: center; color: var(--muted); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://mapleboost.ca/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Data",
+      "item": "https://mapleboost.ca/data"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Canadian small business grants database",
+      "item": "https://mapleboost.ca/data/grants-database"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<!--#include virtual="/inc/nav.html" -->
+<main id="content">
+
+<div class="container">
+  <article class="article-wrap">
+    <div class="article">
+      <span class="eyebrow">Data</span>
+      <h1>Canadian small business grants database</h1>
+      <p class="lead">A curated list of federal, provincial, and major regional grants and non-dilutive funding available to Canadian small businesses in 2026. Filter by province, stage, and category. We don&rsquo;t list programs that are perpetually &ldquo;closed for applications&rdquo;.</p>
+      <p class="muted small">Last reviewed June 2026. Always confirm program status on the official site before applying.</p>
+
+      <div class="grants-toolbar">
+        <input type="search" id="q" placeholder="Search grants&hellip;" oninput="filter()" aria-label="Search">
+        <select id="province" onchange="filter()" aria-label="Province">
+          <option value="">All provinces</option>
+          <option>Federal</option>
+          <option>Ontario</option>
+          <option>Quebec</option>
+          <option>British Columbia</option>
+          <option>Alberta</option>
+        </select>
+        <select id="cat" onchange="filter()" aria-label="Category">
+          <option value="">All categories</option>
+          <option>R&amp;D / SR&amp;ED</option>
+          <option>Hiring / wages</option>
+          <option>Export / market expansion</option>
+          <option>Clean tech</option>
+          <option>Digital adoption</option>
+          <option>Sector-specific</option>
+          <option>General</option>
+        </select>
+      </div>
+
+      <div class="grants-grid" id="grid"></div>
+
+      <h2>About this list</h2>
+      <p>We focus on programs that actually pay out money - grants, repayable contributions with a forgivable portion, and wage subsidies. We deliberately exclude:</p>
+      <ul>
+        <li>Programs that are <em>permanently</em> oversubscribed.</li>
+        <li>Pure loan programs (a separate loans guide is coming).</li>
+        <li>&ldquo;Free consultations&rdquo; dressed up as grants.</li>
+      </ul>
+
+      <h2>Where else to look</h2>
+      <ul>
+        <li><a href="https://innovation.ised-isde.canada.ca/innovation/s/?language=en_CA" rel="noopener" target="_blank">Innovation Canada</a> - federal search across innovation, hiring, and export programs.</li>
+        <li><a href="https://www.canada.ca/en/services/business/grants.html" rel="noopener" target="_blank">canada.ca / Business grants and financing</a>.</li>
+        <li>Your local economic development office - the smaller municipal programs rarely make it onto roundups but can be material.</li>
+      </ul>
+
+      <h2>How to apply (briefly)</h2>
+      <ol>
+        <li><strong>Read the eligibility criteria carefully.</strong> Most rejections are basic eligibility mismatches.</li>
+        <li><strong>Talk to the program officer</strong> before applying. They&rsquo;ll tell you whether you&rsquo;re a fit.</li>
+        <li><strong>Plan for paperwork.</strong> Budget, project plan, financial statements, sometimes letters of support.</li>
+        <li><strong>Track timelines.</strong> Many programs reimburse only after the work is done.</li>
+      </ol>
+          <p class="muted small">Last updated: June 4, 2026. We review this page when rules or pricing change. <a href="/contact">Spot an error?</a></p>
+</div>
+
+    <aside class="sidebar">
+      <aside class="cta-card" aria-label="Recommended partner">
+        <span class="cta-eyebrow">Worth knowing</span>
+        <h3 class="cta-title">SR&amp;ED is the biggest one</h3>
+        <p class="cta-body">Canada&rsquo;s SR&amp;ED program is the largest single source of federal R&amp;D funding for CCPCs - up to 35% refundable on the first $3M of eligible expenditures.</p>
+        <a class="btn btn-primary" href="/grow">Browse the grow hub &rarr;</a>
+      </aside>
+    </aside>
+  </article>
+</div>
+
+<script>
+  var GRANTS = [
+    {n:"SR&ED Investment Tax Credit",p:"Federal",c:"R&D / SR&ED",a:"Up to 35% refundable on first $3M of eligible R&D for CCPCs",u:"https://www.canada.ca/en/revenue-agency/services/scientific-research-experimental-development-tax-incentive-program.html",t:["R&D","All sectors"]},
+    {n:"Canada Digital Adoption Program (Boost Your Business Technology)",p:"Federal",c:"Digital adoption",a:"Up to $15,000 grant + 0% interest BDC loan up to $100,000",u:"https://ised-isde.canada.ca/site/canada-digital-adoption-program",t:["Software","SMB"]},
+    {n:"CanExport SMEs",p:"Federal",c:"Export / market expansion",a:"Up to $50,000 covering up to 50% of export marketing costs",u:"https://www.tradecommissioner.gc.ca/funding-financement/canexport/sme-pme/index.aspx",t:["Export"]},
+    {n:"Strategic Innovation Fund",p:"Federal",c:"R&D / SR&ED",a:"Large-scale R&D and scale-up funding, typically $10M+",u:"https://ised-isde.canada.ca/site/strategic-innovation-fund/en",t:["R&D","Scale-ups"]},
+    {n:"Canada Summer Jobs",p:"Federal",c:"Hiring / wages",a:"Wage subsidy for hiring youth aged 15-30 over the summer",u:"https://www.canada.ca/en/employment-social-development/services/funding/canada-summer-jobs.html",t:["Hiring","Youth"]},
+    {n:"Industrial Research Assistance Program (IRAP)",p:"Federal",c:"R&D / SR&ED",a:"Non-repayable contributions for R&D, typical projects $50K-$1M+",u:"https://nrc.canada.ca/en/support-technology-innovation",t:["R&D","Tech"]},
+    {n:"Net Zero Accelerator",p:"Federal",c:"Clean tech",a:"Project funding for emission reduction and clean tech adoption",u:"https://ised-isde.canada.ca/site/strategic-innovation-fund/en/net-zero-accelerator-initiative",t:["Clean tech"]},
+
+    {n:"Digital Main Street",p:"Ontario",c:"Digital adoption",a:"Grants and advisory support for Ontario small businesses going digital",u:"https://digitalmainstreet.ca/",t:["Retail","SMB"]},
+    {n:"Starter Company Plus",p:"Ontario",c:"General",a:"Up to $5,000 for entrepreneurs starting or expanding a business",u:"https://www.ontario.ca/page/starter-company-plus",t:["Founders"]},
+    {n:"Ontario Together Trade Fund",p:"Ontario",c:"Export / market expansion",a:"Helps Ontario businesses access supply chains and interprovincial trade",u:"https://www.ontario.ca/page/ontario-together-trade-fund",t:["Manufacturing"]},
+    {n:"Co-operative Education Tax Credit",p:"Ontario",c:"Hiring / wages",a:"Refundable tax credit of 25%-30% of co-op student wages",u:"https://www.fin.gov.on.ca/en/credit/cetc/",t:["Hiring","Students"]},
+
+    {n:"PME MTL Financing",p:"Quebec",c:"General",a:"Up to $300,000 for small businesses in the Montreal region",u:"https://pmemtl.com/",t:["Montreal","SMB"]},
+    {n:"Investissement Quebec - Innovation",p:"Quebec",c:"R&D / SR&ED",a:"Loans and equity for Quebec innovation projects",u:"https://www.investquebec.com/quebec/en/financial-products.html",t:["R&D"]},
+    {n:"PSCE - Quebec wage subsidy for new hires",p:"Quebec",c:"Hiring / wages",a:"Wage subsidies through Services Quebec for hard-to-fill positions",u:"https://www.quebec.ca/en/employment/aid-employers-businesses",t:["Hiring"]},
+
+    {n:"Innovate BC - Ignite Program",p:"British Columbia",c:"R&D / SR&ED",a:"Up to $300,000 for natural resources and applied science research",u:"https://www.innovatebc.ca/",t:["R&D"]},
+    {n:"BC Employer Training Grant",p:"British Columbia",c:"Hiring / wages",a:"Up to $10,000 per employee in training costs",u:"https://www.workbc.ca/employer-resources/bc-employer-training-grant.aspx",t:["Training"]},
+    {n:"Launch Online Grant (when open)",p:"British Columbia",c:"Digital adoption",a:"Grants to develop or improve e-commerce. Reopens periodically.",u:"https://launchonline.ca/",t:["E-commerce"]},
+
+    {n:"Alberta Innovates - Product Demonstration Program",p:"Alberta",c:"R&D / SR&ED",a:"Up to $300,000 to demonstrate Alberta-developed technology",u:"https://albertainnovates.ca/",t:["R&D","Tech"]},
+    {n:"Canada-Alberta Job Grant",p:"Alberta",c:"Hiring / wages",a:"Two-thirds of training costs, up to $10,000 per employee",u:"https://www.alberta.ca/canada-alberta-job-grant",t:["Training"]},
+    {n:"Emissions Reduction Alberta - TIER Grants",p:"Alberta",c:"Clean tech",a:"Funding for emission reduction and clean tech projects",u:"https://www.eralberta.ca/",t:["Clean tech"]}
+  ];
+
+  function render(list) {
+    var grid = document.getElementById("grid");
+    if (!list.length) {
+      grid.innerHTML = "<div class='grant-empty'>No grants matched. Try a broader search.</div>";
+      return;
+    }
+    grid.innerHTML = list.map(function(g){
+      return "<div class='grant-card'>"
+        + "<h3>" + g.n + "</h3>"
+        + "<div class='grant-meta'><span>" + g.p + "</span><span>" + g.c + "</span></div>"
+        + "<p>" + g.a + "</p>"
+        + g.t.map(function(t){ return "<span class='grant-tag'>" + t + "</span>"; }).join("")
+        + " <a href='" + g.u + "' rel='noopener' target='_blank'>Official page &rarr;</a>"
+        + "</div>";
+    }).join("");
+  }
+  function filter() {
+    var q = document.getElementById("q").value.toLowerCase();
+    var p = document.getElementById("province").value;
+    var c = document.getElementById("cat").value;
+    var list = GRANTS.filter(function(g){
+      if (p && g.p !== p) return false;
+      if (c && g.c !== c) return false;
+      if (q) {
+        var hay = (g.n + " " + g.a + " " + g.c + " " + g.t.join(" ")).toLowerCase();
+        if (hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+    render(list);
+  }
+  render(GRANTS);
+</script>
+
+<!--#include virtual="/inc/footer.html" -->
+                        

@@ -1,0 +1,8 @@
+# Block direct HTTP requests to /inc/ files.
+# SSI internal subrequests (IS_SUBREQ=true) are allowed through
+# so that <!--#include virtual="/inc/..." --> keeps working.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{IS_SUBREQ} false
+  RewriteRule ^ - [F,L]
+</IfModule>

@@ -1,0 +1,50 @@
+# MapleBoost
+
+> Independent guides, calculators, and reviews for starting and growing a business in Canada. Federal and provincial coverage for Ontario, Quebec, British Columbia, and Alberta. Editorially independent; supported by affiliate commissions on partner links.
+
+Topics covered:
+- Federal and provincial incorporation
+- Sole proprietorships, partnerships, corporations
+- GST/HST, payroll, corporate tax basics
+- Business banking, accounting, payroll, CRM, legal tools
+- Grants, funding, and export programs
+
+## Hubs
+- [Start a business in Canada](https://mapleboost.ca/start): index of all start-a-business guides
+- [Grow your business](https://mapleboost.ca/grow): hiring, books, taxes, getting paid
+- [Services](https://mapleboost.ca/services): curated services across incorporation, accounting, banking, payroll, legal, CRM
+- [Tools](https://mapleboost.ca/tools): free calculators
+- [Data](https://mapleboost.ca/data): reference tables and grants database
+- [Reviews](https://mapleboost.ca/reviews): hands-on product comparisons
+- [The Maple Stack](https://mapleboost.ca/stack): one recommended tool per category, no comparison
+- [Blog](https://mapleboost.ca/blog): updates and commentary
+
+## How-to guides
+- [How to incorporate federally](https://mapleboost.ca/start/incorporate-federal): step-by-step federal incorporation
+- [Incorporate in Ontario](https://mapleboost.ca/start/ontario/incorporate): OBCA filing, NUANS, Ontario Business Registry
+- [Incorporate in Quebec](https://mapleboost.ca/start/quebec/incorporate): REQ filing, French name rules, NEQ
+- [Incorporate in BC](https://mapleboost.ca/start/bc/incorporate): BC Business Corporations Act, Name Request
+- [Incorporate in Alberta](https://mapleboost.ca/start/alberta/incorporate): ABCA filing through Authorized Service Providers
+- [Sole proprietorship vs. corporation](https://mapleboost.ca/start/sole-proprietorship): liability, taxes, break-even revenue
+- [Register for GST/HST](https://mapleboost.ca/start/register-gst-hst): CRA registration, reporting periods, Quick Method
+- [Get a CRA Business Number](https://mapleboost.ca/start/business-number-cra): RT, RP, RC, RM program accounts
+
+## Provincial hubs
+- [Start a business in Ontario](https://mapleboost.ca/start/ontario)
+- [Start a business in Quebec](https://mapleboost.ca/start/quebec)
+- [Start a business in British Columbia](https://mapleboost.ca/start/bc)
+- [Start a business in Alberta](https://mapleboost.ca/start/alberta)
+
+## Calculators and data
+- [GST/HST calculator](https://mapleboost.ca/tools/gst-hst-calculator): add or remove sales tax for any province
+- [Incorporation cost estimator](https://mapleboost.ca/tools/incorporation-cost): federal vs. provincial, DIY vs. service
+- [Provincial tax rates](https://mapleboost.ca/data/provincial-tax-rates): CCPC and general rates for 2026
+- [Grants database](https://mapleboost.ca/data/grants-database): federal, provincial, and regional small business grants
+
+## Reviews and comparisons
+- [Best incorporation services in Canada](https://mapleboost.ca/reviews/best-incorporation-services): Ownr vs. LawDepot vs. MyCorporation
+- [Best accounting software](https://mapleboost.ca/reviews/best-accounting-software): Zoho Books vs. Xero vs. FreshBooks vs. Wave
+- [Best business bank accounts](https://mapleboost.ca/reviews/best-business-bank-accounts): Wealthsimple vs. Wise vs. RBC vs. TD vs. Tangerine
+
+## The Maple Stack (single picks)
+- [The Maple Stack](https://mapleboost.ca/stack): our one pick per category &mdash; monday.com (project management), Zoho Books (accounting), LawDepo

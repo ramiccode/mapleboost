@@ -1,0 +1,96 @@
+# =====================================================================
+# MapleBoost .htaccess — Apache 2.4 on ICDSoft cPanel shared hosting
+# =====================================================================
+
+# ---- Default options ----
+Options -Indexes +FollowSymLinks +Includes
+DirectoryIndex index.html index.php
+
+# ---- SSI: process <!--#include --> directives in .html and .php files ----
+<IfModule mod_include.c>
+  AddOutputFilter INCLUDES .html .php
+</IfModule>
+
+# ---- Default character set ----
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ---- Force HTTPS ----
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ---- Force non-www (mapleboost.ca is the canonical) ----
+  RewriteCond %{HTTP_HOST} ^www\.mapleboost\.ca$ [NC]
+  RewriteRule ^ https://mapleboost.ca%{REQUEST_URI} [L,R=301]
+
+  # ---- 301 redirects from old Kopage site ----
+  # Keep /about, /contact and /terms-of-use, /privacy-policy as canonical slugs
+  RewriteRule ^contact-us/?$                        /contact          [L,R=301]
+  RewriteRule ^services/?$                          /reviews          [L,R=301]
+  RewriteRule ^blog/kit-affiliate-program/?$        /blog/kit-mcp     [L,R=301]
+
+  # ---- Strip .php extension (clean URLs) ----
+  # If URL ends in .php, redirect to the version without
+  RewriteCond %{THE_REQUEST} \s/([^?\s]+)\.php[?\s]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # Internally rewrite extensionless URLs — prefer .html (SSI), fall back to .php
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^(.+?)/?$ $1.php [L]
+
+  # ---- Pretty go-link (in case someone hits /go without query) ----
+  RewriteRule ^go$ go.php [L,QSA]
+</IfModule>
+
+# ---- GZIP / Brotli compression ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml application/rss+xml image/svg+xml
+</IfModule>
+
+# ---- Cache headers ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                              "access plus 1 day"
+  ExpiresByType text/html                     "access plus 1 hour"
+  ExpiresByType text/css                      "access plus 1 month"
+  ExpiresByType application/javascript        "access plus 1 month"
+  ExpiresByType image/svg+xml                 "access plus 1 month"
+  ExpiresByType image/png                     "access plus 1 month"
+  ExpiresByType image/jpeg                    "access plus 1 month"
+  ExpiresByType image/webp                    "access plus 1 month"
+  ExpiresByType font/woff2                    "access plus 1 year"
+  ExpiresByType application/xml               "access plus 1 hour"
+  ExpiresByType application/rss+xml           "access plus 1 hour"
+</IfModule>
+
+# ---- Security headers ----
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
+# ---- Protect sensitive files ----
+<FilesMatch "^(\.htaccess|\.htpasswd|config\.php|.*\.log|.*\.csv)$">
+  Require all denied
+</FilesMatch>
+
+# ---- Protect /logs from direct access ----
+RedirectMatch 404 ^/logs/.*$
+
+# Note: /inc/ is protected by inc/.htaccess using IS_SUBREQ so that
+# SSI internal subrequests can still reach the include fragments.
+
+# ---- Custom error pages ----
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.php

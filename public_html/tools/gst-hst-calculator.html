@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<!--#include virtual="/inc/head.html" -->
+<title>GST/HST Calculator (2026): Add or Remove Sales Tax | MapleBoost</title>
+<meta name="description" content="Free GST/HST calculator for every Canadian province. Add or remove sales tax at 5%, 13%, 14%, or 15%, plus Quebec QST. No signup, runs in your browser.">
+<link rel="canonical" href="https://mapleboost.ca/tools/gst-hst-calculator">
+
+<meta property="og:title" content="GST/HST Calculator (2026) | MapleBoost">
+<meta property="og:description" content="Free GST/HST calculator for every Canadian province. Add or remove sales tax.">
+<meta property="og:url" content="https://mapleboost.ca/tools/gst-hst-calculator">
+
+<meta name="twitter:title" content="GST/HST Calculator (2026)">
+<meta name="twitter:description" content="Free, no signup, runs in your browser.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GST/HST Calculator",
+  "url": "https://mapleboost.ca/tools/gst-hst-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CAD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MapleBoost"
+  },
+  "dateModified": "2026-06-04"
+}
+</script>
+
+<style>
+  .calc {
+    background: var(--bg-tint);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 24px 0 32px;
+  }
+  .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .calc label { display: block; font-size: .9rem; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
+  .calc input, .calc select {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; font-family: var(--sans); font-size: 1rem; color: var(--ink);
+  }
+  .calc input:focus, .calc select:focus { outline: 2px solid var(--maple-red); outline-offset: -1px; }
+  .calc .toggle { display: inline-flex; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .calc .toggle button {
+    background: transparent; border: 0; padding: 10px 16px; cursor: pointer;
+    font-family: var(--sans); font-size: .95rem; color: var(--ink-2);
+  }
+  .calc .toggle button.active { background: var(--ink); color: #fff; }
+  .calc-result {
+    background: #fff; border-radius: var(--radius); padding: 16px 20px; margin-top: 16px;
+    border: 1px solid var(--line);
+  }
+  .calc-result table { width: 100%; border-collapse: collapse; }
+  .calc-result td { padding: 6px 0; }
+  .calc-result td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .calc-result .total td { border-top: 1px solid var(--line); padding-top: 12px; font-size: 1.1rem; }
+  @media (max-width: 640px) { .calc-row { grid-template-columns: 1fr; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://mapleboost.ca/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://mapleboost.ca/tools"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "GST/HST calculator",
+      "item": "https://mapleboost.ca/tools/gst-hst-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<!--#include virtual="/inc/nav.html" -->
+<main id="content">
+
+<div class="container">
+  <article class="article-wrap">
+    <div class="article">
+      <span class="eyebrow">Tools</span>
+      <h1>GST/HST calculator</h1>
+      <p class="lead">Add or remove GST/HST for any Canadian province. Quebec calculation includes QST. All math runs in your browser - we never see your numbers.</p>
+      <!--#include virtual="/inc/disclosure.html" -->
+
+      <div class="calc" aria-label="GST/HST calculator">
+        <div class="toggle" role="tablist" aria-label="Mode">
+          <button type="button" id="mode-add" class="active" onclick="setMode('add')">Add tax</button>
+          <button type="button" id="mode-remove" onclick="setMode('remove')">Remove tax</button>
+        </div>
+
+        <div class="calc-row" style="margin-top:16px;">
+          <div>
+            <label for="amount" id="amount-label">Amount before tax (CAD)</label>
+            <input type="number" id="amount" inputmode="decimal" step="0.01" value="100" oninput="calc()">
+          </div>
+          <div>
+            <label for="province">Province / Territory</label>
+            <select id="province" onchange="calc()">
+              <option value="AB" selected>Alberta - 5% GST</option>
+              <option value="BC">British Columbia - 5% GST (PST separate)</option>
+              <option value="MB">Manitoba - 5% GST</option>
+              <option value="NB">New Brunswick - 15% HST</option>
+              <option value="NL">Newfoundland and Labrador - 15% HST</option>
+              <option value="NS">Nova Scotia - 15% HST</option>
+              <option value="NT">Northwest Territories - 5% GST</option>
+              <option value="NU">Nunavut - 5% GST</option>
+              <option value="ON">Ontario - 13% HST</option>
+              <option value="PE">Prince Edward Island - 15% HST</option>
+              <option value="QC">Quebec - 5% GST + 9.975% QST</option>
+              <option value="SK">Saskatchewan - 5% GST</option>
+              <option value="YT">Yukon - 5% GST</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-result" id="result">
+          <!-- populated by JS -->
+        </div>
+        <p class="muted small" style="margin-top:12px;">Rates as of June 2026. PST in BC, Saskatchewan, and Manitoba is administered provincially and not included above - see the <a href="/data/provincial-tax-rates">provincial tax rates page</a>.</p>
+      </div>
+
+      <h2>How GST/HST works</h2>
+      <p>GST is a 5% federal sales tax. Five provinces have <em>harmonized</em> their provincial sales tax with GST into a single HST - New Brunswick, Newfoundland and Labrador, Nova Scotia, Ontario, and PEI. As a registered business, you charge HST instead of separate GST and PST in those provinces. Quebec has GST plus a separate QST administered by Revenu Qu&eacute;bec.</p>
+      <p>If you&rsquo;re registered for GST/HST, you remit what you collect minus what you paid on business expenses (Input Tax Credits). See our <a href="/start/register-gst-hst">GST/HST registration guide</a> for the full mechanics.</p>
+
+      <h2>Rates at a glance</h2>
+      <table class="data-table">
+        <thead><tr><th>Province / Territory</th><th>Combined federal/provincial sales tax</th></tr></thead>
+        <tbody>
+          <tr><td>Alberta, BC, Manitoba, NT, NU, Saskatchewan, Yukon</td><td>5% GST (+ PST or RST where applicable, administered separately)</td></tr>
+          <tr><td>Ontario</td><td>13% HST</td></tr>
+          <tr><td>New Brunswick, NL, Nova Scotia, PEI</td><td>15% HST</td></tr>
+          <tr><td>Quebec</td><td>5% GST + 9.975% QST = 14.975% effective</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Notes</h2>
+      <ul>
+        <li><strong>Place-of-supply rules</strong> determine which province&rsquo;s rate applies - usually where the customer is, with exceptions for real property and certain services. CRA&rsquo;s GST/HST Memorandum 3-3 has the details.</li>
+        <li><strong>Zero-rated</strong> supplies (most basic groceries, most prescription drugs, exports) are taxable at 0% - you don&rsquo;t charge tax but you do claim ITCs on inputs.</li>
+        <li><strong>Exempt</strong> supplies (long-term residential rents, most financial services, most health services) are not taxable, and you don&rsquo;t claim ITCs on inputs.</li>
+        <li><strong>Quick Method</strong> users use a different remittance rate - this calculator shows the customer-facing math, not your remittance amount.</li>
+      </ul>
+
+      <h2>FAQ</h2>
+      <h3>Why does Quebec show two rates?</h3>
+      <p>Because GST and QST are separate taxes. Both are calculated on the pre-tax amount (QST is no longer applied on GST as of 2013). You charge them as one combined amount on the invoice but remit separately.</p>
+      <h3>Does this work for invoicing?</h3>
+      <p>The math is correct. For invoicing purposes, also display your GST/HST number (and QST number in Quebec) on the invoice - CRA requires it for any sale over $30.</p>
+          <p class="muted small">Last updated: June 4, 2026. We review this page when rules or pricing change. <a href="/contact">Spot an error?</a></p>
+</div>
+
+    <aside class="sidebar">
+      <aside class="cta-card" aria-label="Recommended partner">
+        <span class="cta-eyebrow">Automate it</span>
+        <h3 class="cta-title">Zoho Books tracks tax for you</h3>
+        <p class="cta-body">Auto-applies the right rate by province, files directly with CRA, and handles Quick Method math.</p>
+        <a class="btn btn-primary" href="/go?id=zohobooks" rel="sponsored nofollow noopener" target="_blank">Try Zoho Books &rarr;</a>
+      </aside>
+
+      <aside class="cta-card" aria-label="Related">
+        <h3 class="cta-title">Related</h3>
+        <ul class="cta-list">
+          <li><a href="/start/register-gst-hst">Register for GST/HST</a></li>
+          <li><a href="/data/provincial-tax-rates">Provincial tax rates</a></li>
+          <li><a href="/tools/incorporation-cost">Incorporation cost</a></li>
+        </ul>
+      </aside>
+    </aside>
+  </article>
+</div>
+
+<script>
+  var RATES = {
+    AB:{gst:0.05,qst:0,label:"5% GST"},
+    BC:{gst:0.05,qst:0,label:"5% GST"},
+    MB:{gst:0.05,qst:0,label:"5% GST"},
+    NB:{gst:0.15,qst:0,label:"15% HST"},
+    NL:{gst:0.15,qst:0,label:"15% HST"},
+    NS:{gst:0.15,qst:0,label:"15% HST"},
+    NT:{gst:0.05,qst:0,label:"5% GST"},
+    NU:{gst:0.05,qst:0,label:"5% GST"},
+    ON:{gst:0.13,qst:0,label:"13% HST"},
+    PE:{gst:0.15,qst:0,label:"15% HST"},
+    QC:{gst:0.05,qst:0.09975,label:"5% GST + 9.975% QST"},
+    SK:{gst:0.05,qst:0,label:"5% GST"},
+    YT:{gst:0.05,qst:0,label:"5% GST"}
+  };
+  var mode = "add";
+  function setMode(m){
+    mode = m;
+    document.getElementById("mode-add").classList.toggle("active", m === "add");
+    document.getElementById("mode-remove").classList.toggle("active", m === "remove");
+    document.getElementById("amount-label").textContent = m === "add" ? "Amount before tax (CAD)" : "Amount including tax (CAD)";
+    calc();
+  }
+  function fmt(n){ return "$" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function calc(){
+    var amt = parseFloat(document.getElementById("amount").value);
+    if (isNaN(amt) || amt < 0) amt = 0;
+    var prov = document.getElementById("province").value;
+    var r = RATES[prov];
+    var pre, gst, qst, total;
+    if (mode === "add") {
+      pre = amt; gst = amt * r.gst; qst = amt * r.qst; total = pre + gst + qst;
+    } else {
+      var combined = 1 + r.gst + r.qst;
+      pre = amt / combined; gst = pre * r.gst; qst = pre * r.qst; total = amt;
+    }
+    var html = "<table>";
+    html += "<tr><td>Subtotal (before tax)</td><td>" + fmt(pre) + "</td></tr>";
+    if (r.gst > 0 && r.label.indexOf("HST") > -1) {
+      html += "<tr><td>HST (" + (r.gst*100).toFixed(0) + "%)</td><td>" + fmt(gst) + "</td></tr>";
+    } else {
+      html += "<tr><td>GST (5%)</td><td>" + fmt(gst) + "</td></tr>";
+    }
+    if (r.qst > 0) {
+      html += "<tr><td>QST (9.975%)</td><td>" + fmt(qst) + "</td></tr>";
+    }
+    html += "<tr class='total'><td>Total</td><td>" + fmt(total) + "</td></tr>";
+    html += "</table>";
+    document.getElementById("result").innerHTML = html;
+  }
+  calc();
+</script>
+
+<!--#include virtual="/inc/footer.html" -->
+                                                                                                                        

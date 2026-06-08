@@ -1,0 +1,43 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="MapleBoost">
+
+<script>
+  window.mbAnalyticsId = 'G-EHSZZ6TXTF';
+  window.mbAnalyticsLoaded = false;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.mbLoadAnalytics = function () {
+    if (window.mbAnalyticsLoaded) return;
+    window.mbAnalyticsLoaded = true;
+
+    gtag('js', new Date());
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    gtag('config', window.mbAnalyticsId);
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(window.mbAnalyticsId);
+    document.head.appendChild(script);
+  };
+</script>
+
+<meta property="og:site_name" content="MapleBoost">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://mapleboost.ca/assets/img/og-default.png">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mapleboost.ca/assets/img/og-default.png">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/img/favicon.ico">
+
+<link rel="stylesheet" href="/assets/css/site.css">

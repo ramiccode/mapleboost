@@ -1,0 +1,77 @@
+# MapleBoost — site scaffold
+
+Static-first PHP-include site for ICDSoft shared hosting (cPanel + Apache + PHP-CGI).
+
+## What's here
+
+```
+public_html/
+├── .htaccess               clean URLs, HTTPS, gzip, cache, 301s, security headers
+├── index.php               homepage
+├── 404.php                 custom 404
+├── about.php / contact.php / disclosure.php / terms-of-use.php / privacy-policy.php
+├── go.php                  affiliate link cloaker + click logger (/go?id=ownr → 302)
+├── gen-sitemap.php         sitemap generator (run from CLI or hit it once)
+├── robots.txt              allows major crawlers + AI bots (GPTBot, ClaudeBot, etc.)
+├── llms.txt                AI-engine index of canonical content
+├── inc/                    shared partials (never web-accessible — blocked in .htaccess)
+│   ├── config.php          site constants + affiliate registry (edit affiliate URLs here)
+│   ├── header.php          <head> + meta + JSON-LD slot + opens <main>
+│   ├── nav.php             primary nav
+│   ├── footer.php          closes main + global footer
+│   ├── sidebar-cta.php     reusable affiliate sidebar card
+│   ├── comparison-table.php reusable review comparison table
+│   └── disclosure.php      inline affiliate-disclosure callout
+├── start/                  pillar: starting a business
+│   ├── index.php
+│   └── incorporate-federal.php  ← sample pillar page (template for the rest)
+├── grow/, tools/, data/, reviews/, blog/   empty folders ready for content
+├── reviews/best-incorporation-services.php ← sample review page (template)
+├── assets/
+│   └── css/site.css        editorial design system (NerdWallet-inspired)
+└── logs/                   click logs (web-blocked, 700 perms)
+```
+
+## Deploy to ICDSoft
+
+1. Upload `public_html/` to your account's `public_html/` via cPanel File Manager or FTP.
+2. In cPanel → SSL/TLS Status, enable Let's Encrypt for `mapleboost.ca` and `www.mapleboost.ca`.
+3. In cPanel → Domains, set `www.mapleboost.ca` to redirect to `mapleboost.ca` (or rely on the .htaccess rule already in place).
+4. Hit `https://mapleboost.ca/` — homepage should render. If you see "Forbidden" on `/inc/...` paths, that's correct (those are blocked).
+5. Generate the sitemap once: browse to `https://mapleboost.ca/gen-sitemap.php` or run `php gen-sitemap.php` via SSH. Then either delete `gen-sitemap.php` or protect it.
+
+## Editing content
+
+- All pages are plain PHP. Each page sets a `$page` array (title, description, optional `json_ld`) then includes `inc/header.php` and `inc/footer.php`.
+- To add a new affiliate partner: append an entry to `$AFFILIATES` in `inc/config.php`, then use `/go?id=<your_id>` anywhere.
+- To add a sidebar CTA: set `$cta = [...]` and `include __DIR__ . '/inc/sidebar-cta.php';`.
+- To add a comparison table: set `$rows = [...]` and `include 'inc/comparison-table.php';`.
+
+## URLs
+
+Clean URLs are enforced by `.htaccess`:
+- `/start/incorporate-federal` → serves `/start/incorporate-federal.php`
+- `/start/incorporate-federal.php` → 301 redirects to `/start/incorporate-federal`
+
+## SEO + AI engines
+
+- Every page emits Organization JSON-LD (sitewide) and can add per-page schema via `$page['json_ld']`.
+- `robots.txt` explicitly allows GPTBot, ClaudeBot, anthropic-ai, PerplexityBot, Google-Extended, CCBot.
+- `llms.txt` is the AI-engine index — keep it updated as you publish.
+- Sitemap regenerates from `gen-sitemap.php`; run it after publishing new pages.
+
+## Phase 2 content plan
+
+Sample pages built as templates:
+- `/start/incorporate-federal` — pillar how-to template
+- `/reviews/best-incorporation-services` — review/comparison template
+
+To finish phase 1 content, replicate the pillar template for:
+- `/start/sole-proprietorship`, `/start/register-gst-hst`, `/start/business-number-cra`
+- `/start/{ontario,quebec,bc,alberta}/incorporate` (and per-province sub-pages)
+- `/grow/{funding-grants,hiring,accounting-setup,payroll-setup,crm-setup,export-trade}`
+
+And the review template for:
+- `/reviews/{best-accounting-software,best-business-bank-accounts,best-business-credit-cards,best-payroll-software,best-crm-small-business,best-legal-services}`
+
+Tools and data pages (`/tools/*`, `/data/*`) need bespoke logic per page — calculators with light JS, data tables that can be regenerated from CSV.
