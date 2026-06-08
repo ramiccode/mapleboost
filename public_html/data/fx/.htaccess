@@ -1,0 +1,4 @@
+# Allow the public exchange-rate CSV downloads (parent denies *.csv site-wide)
+<FilesMatch "\.csv$">
+  Require all granted
+</FilesMatch>

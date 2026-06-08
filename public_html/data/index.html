@@ -25,7 +25,7 @@
     "name": "MapleBoost",
     "url": "https://mapleboost.ca"
   },
-  "dateModified": "2026-06-04"
+  "dateModified": "2026-06-08"
 }
 </script>
 <script type="application/ld+json">
@@ -62,24 +62,99 @@
       <!--#include virtual="/inc/disclosure.html" -->
 
       <h2>Tax tables</h2>
-      <div class="card-grid">
-        <a class="tile" href="/data/provincial-tax-rates">
+      <div class="stack-grid">
+        <a class="stack-card" href="/data/provincial-tax-rates" style="text-decoration:none;color:inherit;">
+          <span class="cat">Reference</span>
           <h3>Provincial &amp; federal corporate tax rates</h3>
-          <p>Small business and general rates for every province and territory, with the combined effective rate for CCPCs.</p>
+          <p class="why">Small business and general rates for every province and territory, with the combined effective rate for CCPCs.</p>
+          <span class="btn btn-primary">View rates &rarr;</span>
         </a>
-        <a class="tile" href="/tools/gst-hst-calculator">
+        <a class="stack-card" href="/tools/gst-hst-calculator" style="text-decoration:none;color:inherit;">
+          <span class="cat">Calculator</span>
           <h3>GST/HST rates by province</h3>
-          <p>Current rates and registration thresholds. Includes Quebec QST.</p>
+          <p class="why">Current rates and registration thresholds. Includes Quebec QST.</p>
+          <span class="btn btn-primary">Open calculator &rarr;</span>
         </a>
       </div>
 
       <h2>Funding</h2>
-      <div class="card-grid">
-        <a class="tile" href="/data/grants-database">
+      <div class="stack-grid">
+        <a class="stack-card" href="/data/grants-database" style="text-decoration:none;color:inherit;">
+          <span class="cat">Database</span>
           <h3>Canadian grants database</h3>
-          <p>Federal, provincial, and major regional grants for small business. Filterable by stage, sector, and province.</p>
+          <p class="why">Federal, provincial, and major regional grants for small business. Filterable by stage, sector, and province.</p>
+          <span class="btn btn-primary">Search grants &rarr;</span>
         </a>
       </div>
+
+      <h2>Currency exchange</h2>
+      <p>Official Bank of Canada rates. Convert any amount to or from the Canadian dollar, or browse the full daily history for the currencies Canadian businesses use most.</p>
+      <div class="stack-grid">
+        <a class="stack-card" href="/tools/currency-converter" style="text-decoration:none;color:inherit;">
+          <span class="cat">Tool</span>
+          <h3>Currency converter</h3>
+          <p class="why">Convert to or from CAD at today&rsquo;s rate or any past date, with one-click flip. 27 currencies.</p>
+          <span class="btn btn-primary">Open converter &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/exchange-rate-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Data</span>
+          <h3>All exchange-rate history</h3>
+          <p class="why">Interactive charts, full daily tables since 2017, and free CSV downloads for every currency.</p>
+          <span class="btn btn-primary">Browse all &rarr;</span>
+        </a>
+      </div>
+      <p><strong>Daily history by currency (vs CAD):</strong></p>
+      <div class="stack-grid">
+        <a class="stack-card" href="/data/usd-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>USD &rarr; CAD</h3>
+          <p class="why">US dollar &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/eur-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>EUR &rarr; CAD</h3>
+          <p class="why">Euro &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/gbp-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>GBP &rarr; CAD</h3>
+          <p class="why">British pound &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/cny-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>CNY &rarr; CAD</h3>
+          <p class="why">Chinese yuan &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/mxn-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>MXN &rarr; CAD</h3>
+          <p class="why">Mexican peso &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/jpy-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>JPY &rarr; CAD</h3>
+          <p class="why">Japanese yen &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/aud-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>AUD &rarr; CAD</h3>
+          <p class="why">Australian dollar &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+        <a class="stack-card" href="/data/inr-to-cad-history" style="text-decoration:none;color:inherit;">
+          <span class="cat">Exchange rate</span>
+          <h3>INR &rarr; CAD</h3>
+          <p class="why">Indian rupee &mdash; chart, full daily table since 2017 &amp; CSV.</p>
+          <span class="btn btn-primary">View history &rarr;</span>
+        </a>
+      </div>
+      <p>Paying overseas suppliers or invoicing in foreign currencies? Bank of Canada rates are the benchmark &mdash; your bank typically adds 2&ndash;4% on top. <a href="/go?id=wise_biz" rel="sponsored nofollow noopener" target="_blank">Wise Business</a> uses the mid-market rate with one transparent fee.</p>
 
       <h2>Coming next</h2>
       <ul>
@@ -91,7 +166,7 @@
       <h2>Where the numbers come from</h2>
       <p>Every table on this site cites the underlying primary source - CRA, Revenu Qu&eacute;bec, the provincial Ministries of Finance, and the federal Department of Finance. We don&rsquo;t round, we don&rsquo;t editorialize, and we don&rsquo;t cache rates past a quarter without re-checking them.</p>
       <p>Spot something out of date? <a href="/contact">Let us know.</a></p>
-          <p class="muted small">Last updated: June 4, 2026. We review this page when rules or pricing change. <a href="/contact">Spot an error?</a></p>
+          <p class="muted small">Last updated: June 8, 2026. We review this page when rules or pricing change. <a href="/contact">Spot an error?</a></p>
 </div>
 
     <aside class="sidebar">

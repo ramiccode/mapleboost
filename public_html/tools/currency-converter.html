@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<!--#include virtual="/inc/head.html" -->
+<title>Currency Converter (Bank of Canada Rates) | MapleBoost</title>
+<meta name="description" content="Free currency converter using official Bank of Canada daily exchange rates. Convert USD, EUR, GBP and 25+ currencies to CAD, pick any past date, and flip the direction in one click. No signup.">
+<link rel="canonical" href="https://mapleboost.ca/tools/currency-converter">
+
+<meta property="og:title" content="Currency Converter (Bank of Canada Rates) | MapleBoost">
+<meta property="og:description" content="Convert USD, EUR, GBP and 25+ currencies to CAD with official Bank of Canada rates. Historical dates supported.">
+<meta property="og:url" content="https://mapleboost.ca/tools/currency-converter">
+
+<meta name="twitter:title" content="Currency Converter (Bank of Canada Rates)">
+<meta name="twitter:description" content="Official Bank of Canada rates. Convert to CAD, any date, one-click flip.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Currency Converter",
+  "url": "https://mapleboost.ca/tools/currency-converter",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CAD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MapleBoost"
+  },
+  "dateModified": "2026-06-08"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do these exchange rates come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every rate comes directly from the Bank of Canada's Valet API — the daily average exchange rates the Bank publishes each business day by about 16:30 ET. They are indicative rates, not a dealing or transaction rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert between two non-Canadian currencies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Bank of Canada quotes every currency against the Canadian dollar, so we cross-rate through CAD. For example USD to EUR is calculated as the USD/CAD rate divided by the EUR/CAD rate for the same day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is there no rate for the date I picked?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Bank of Canada only publishes rates on business days. If you pick a weekend or holiday, the converter automatically uses the most recent business day before that date. Historical rates are available for the past 12 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this the rate my bank will give me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Bank of Canada rates are a neutral daily benchmark. Banks and card networks add a markup (often 2–4%) plus fees, so your actual rate will differ. Use this tool for accounting, expense reports, and CRA reporting — not as a quote for a trade."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mapleboost.ca/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://mapleboost.ca/tools" },
+    { "@type": "ListItem", "position": 3, "name": "Currency converter", "item": "https://mapleboost.ca/tools/currency-converter" }
+  ]
+}
+</script>
+
+<style>
+  .calc {
+    background: var(--bg-tint);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 24px 0 32px;
+  }
+  .calc label { display: block; font-size: .9rem; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
+  .calc input, .calc select {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; font-family: var(--sans); font-size: 1rem; color: var(--ink);
+  }
+  .calc input:focus, .calc select:focus { outline: 2px solid var(--maple-red); outline-offset: -1px; }
+  .calc .toggle { display: inline-flex; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .calc .toggle button {
+    background: transparent; border: 0; padding: 10px 16px; cursor: pointer;
+    font-family: var(--sans); font-size: .95rem; color: var(--ink-2);
+  }
+  .calc .toggle button.active { background: var(--ink); color: #fff; }
+
+  .fx-pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; margin-top: 16px; }
+  .fx-flip {
+    flex: 0 0 auto; width: 44px; height: 44px; margin-bottom: 1px; border-radius: 50%;
+    border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 1.2rem; line-height: 1;
+    color: var(--ink-2); transition: transform .15s ease, color .15s ease;
+  }
+  .fx-flip:hover { color: var(--maple-red); transform: rotate(180deg); }
+  .fx-flip:focus { outline: 2px solid var(--maple-red); outline-offset: 2px; }
+
+  .calc-result {
+    background: #fff; border-radius: var(--radius); padding: 20px; margin-top: 18px;
+    border: 1px solid var(--line);
+  }
+  .fx-big { font-size: 1.6rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .fx-big .amt { color: var(--maple-red); }
+  .fx-lines { margin-top: 10px; color: var(--ink-2); font-size: .95rem; }
+  .fx-lines div { padding: 2px 0; font-variant-numeric: tabular-nums; }
+  .fx-asof { margin-top: 12px; font-size: .85rem; color: var(--ink-2); }
+  .fx-err { color: var(--maple-red); font-weight: 500; }
+
+  @media (max-width: 640px) {
+    .fx-pair { grid-template-columns: 1fr; }
+    .fx-flip { justify-self: center; transform: rotate(90deg); margin: 4px 0; }
+    .fx-flip:hover { transform: rotate(270deg); }
+  }
+</style>
+</head>
+<body>
+<!--#include virtual="/inc/nav.html" -->
+<main id="content">
+
+<div class="container">
+  <article class="article-wrap">
+    <div class="article">
+      <span class="eyebrow">Tools</span>
+      <h1>Currency converter</h1>
+      <p class="lead">Convert between the Canadian dollar and 27 world currencies using official <strong>Bank of Canada</strong> daily rates. Pick today&rsquo;s rate or any past business day, and flip the direction in one click.</p>
+      <!--#include virtual="/inc/disclosure.html" -->
+
+      <div class="calc" aria-label="Currency converter">
+        <div>
+          <label for="fx-amount">Amount</label>
+          <input type="number" id="fx-amount" inputmode="decimal" step="0.01" min="0" value="100">
+        </div>
+
+        <div class="fx-pair">
+          <div>
+            <label for="fx-from">From</label>
+            <select id="fx-from" aria-label="Convert from currency"></select>
+          </div>
+          <button type="button" class="fx-flip" id="fx-flip" title="Swap currencies" aria-label="Swap from and to currencies">&#8646;</button>
+          <div>
+            <label for="fx-to">To</label>
+            <select id="fx-to" aria-label="Convert to currency"></select>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <label style="margin-bottom:8px;">Rate date</label>
+          <div class="toggle" role="tablist" aria-label="Rate date">
+            <button type="button" id="fx-mode-now" class="active" onclick="fxSetMode('now')">Latest rate</button>
+            <button type="button" id="fx-mode-date" onclick="fxSetMode('date')">Specific date</button>
+          </div>
+          <div id="fx-date-wrap" style="margin-top:12px; display:none;">
+            <label for="fx-date">Date (business day)</label>
+            <input type="date" id="fx-date">
+          </div>
+        </div>
+
+        <div class="calc-result" id="fx-result" aria-live="polite">
+          <span class="muted">Enter an amount to convert.</span>
+        </div>
+        <p class="muted small" style="margin-top:12px;">Source: Bank of Canada daily average exchange rates. Indicative rates only &mdash; your bank or card will add a markup. Historical rates available for the past 12 months.</p>
+      </div>
+
+      <h2>How this converter works</h2>
+      <p>The Bank of Canada publishes one daily average exchange rate for each supported currency, expressed as the value of <em>one unit of the foreign currency in Canadian dollars</em> &mdash; for example, how many Canadian dollars one US dollar is worth. We pull those rates live from the Bank&rsquo;s public <a href="https://www.bankofcanada.ca/valet/docs" rel="nofollow noopener" target="_blank">Valet API</a> and do the arithmetic for you.</p>
+      <p>When you convert between two currencies that aren&rsquo;t the Canadian dollar, we cross-rate through CAD. For instance, US dollars to euros is calculated as the USD/CAD rate divided by the EUR/CAD rate for the same day. That keeps every conversion anchored to a single official source.</p>
+
+      <h2>Which rate should you use for taxes?</h2>
+      <p>For converting foreign income or expenses on a Canadian tax return, the CRA generally accepts the Bank of Canada daily rate for the day the transaction occurred, or an average rate for the year for items that recur throughout the year. This tool gives you the exact daily figure the CRA references &mdash; pick the transaction date under &ldquo;Specific date&rdquo; and keep a screenshot or note for your records.</p>
+
+      <h2>Supported currencies</h2>
+      <p>Canadian dollar (CAD) plus: US dollar, euro, British pound, Australian dollar, Brazilian real, Chinese yuan, Hong Kong dollar, Indian rupee, Indonesian rupiah, Japanese yen, Malaysian ringgit, Mexican peso, New Zealand dollar, Norwegian krone, Peruvian sol, Polish zloty, Russian ruble, Saudi riyal, Singapore dollar, South African rand, South Korean won, Swedish krona, Swiss franc, Taiwan dollar, Thai baht, Turkish lira, and Vietnamese dong.</p>
+
+      <h2>FAQ</h2>
+      <h3>Where do these exchange rates come from?</h3>
+      <p>Directly from the Bank of Canada&rsquo;s Valet API &mdash; the daily average rates the Bank publishes each business day by about 16:30 ET. They&rsquo;re indicative rates, not a dealing rate.</p>
+      <h3>Can I convert between two non-Canadian currencies?</h3>
+      <p>Yes. Because the Bank of Canada quotes everything against CAD, we cross-rate through the Canadian dollar for pairs like USD&rarr;EUR or GBP&rarr;JPY.</p>
+      <h3>Why is there no rate for the date I picked?</h3>
+      <p>The Bank only publishes on business days. Pick a weekend or holiday and the converter automatically falls back to the most recent business day before it. Historical rates go back 12 months.</p>
+      <h3>Is this the rate my bank will give me?</h3>
+      <p>No. This is a neutral benchmark. Banks and card networks typically add a 2&ndash;4% markup plus fees, so your real rate will be worse. If you move money across borders often, a low-markup provider can save a lot &mdash; see our note in the sidebar.</p>
+
+          <p class="muted small">Last updated: June 8, 2026. We review this page when rules or pricing change. <a href="/contact">Spot an error?</a></p>
+</div>
+
+    <aside class="sidebar">
+      <aside class="cta-card" aria-label="Recommended partner">
+        <span class="cta-eyebrow">Cut the markup</span>
+        <h3 class="cta-title">Wise Business for FX</h3>
+        <p class="cta-body">Bank of Canada rates are the benchmark &mdash; your bank adds 2&ndash;4% on top. Wise Business uses the mid-market rate with one transparent fee, ideal for paying overseas suppliers or invoicing in USD.</p>
+        <a class="btn btn-primary" href="/go?id=wise_biz" rel="sponsored nofollow noopener" target="_blank">Try Wise Business &rarr;</a>
+      </aside>
+
+      <aside class="cta-card" aria-label="Related">
+        <h3 class="cta-title">Related</h3>
+        <ul class="cta-list">
+          <li><a href="/data/exchange-rate-history">Exchange rate history</a></li>
+          <li><a href="/tools/gst-hst-calculator">GST/HST calculator</a></li>
+          <li><a href="/tools/incorporation-cost">Incorporation cost</a></li>
+          <li><a href="/tools">All tools &amp; calculators</a></li>
+        </ul>
+      </aside>
+    </aside>
+  </article>
+</div>
+
+<script>
+  var FX_CURRENCIES = {
+    CAD:"Canadian Dollar", USD:"US Dollar", EUR:"Euro", GBP:"British Pound",
+    AUD:"Australian Dollar", BRL:"Brazilian Real", CNY:"Chinese Yuan", HKD:"Hong Kong Dollar",
+    INR:"Indian Rupee", IDR:"Indonesian Rupiah", JPY:"Japanese Yen", MYR:"Malaysian Ringgit",
+    MXN:"Mexican Peso", NZD:"New Zealand Dollar", NOK:"Norwegian Krone", PEN:"Peruvian Sol",
+    PLN:"Polish Zloty", RUB:"Russian Ruble", SAR:"Saudi Riyal", SGD:"Singapore Dollar",
+    ZAR:"South African Rand", KRW:"South Korean Won", SEK:"Swedish Krona", CHF:"Swiss Franc",
+    TWD:"Taiwan Dollar", THB:"Thai Baht", TRY:"Turkish Lira", VND:"Vietnamese Dong"
+  };
+
+  var fxMode = "now";
+  var fxFrom = document.getElementById("fx-from");
+  var fxTo   = document.getElementById("fx-to");
+  var fxAmount = document.getElementById("fx-amount");
+  var fxDate = document.getElementById("fx-date");
+  var fxResult = document.getElementById("fx-result");
+  var fxTimer = null;
+
+  // Populate dropdowns
+  (function(){
+    var opts = "";
+    for (var code in FX_CURRENCIES) {
+      opts += '<option value="' + code + '">' + code + ' – ' + FX_CURRENCIES[code] + '</option>';
+    }
+    fxFrom.innerHTML = opts;
+    fxTo.innerHTML = opts;
+    fxFrom.value = "USD";
+    fxTo.value = "CAD";
+    var fxToday = new Date();
+    fxDate.max = fxToday.toISOString().slice(0, 10);
+    var fxMinD = new Date(fxToday.getFullYear() - 1, fxToday.getMonth(), fxToday.getDate());
+    fxDate.min = fxMinD.toISOString().slice(0, 10);
+    fxDate.value = fxDate.max;
+  })();
+
+  function fxSetMode(m){
+    fxMode = m;
+    document.getElementById("fx-mode-now").classList.toggle("active", m === "now");
+    document.getElementById("fx-mode-date").classList.toggle("active", m === "date");
+    document.getElementById("fx-date-wrap").style.display = (m === "date") ? "block" : "none";
+    fxConvert();
+  }
+
+  function fxFlip(){
+    var a = fxFrom.value;
+    fxFrom.value = fxTo.value;
+    fxTo.value = a;
+    fxConvert();
+  }
+  document.getElementById("fx-flip").addEventListener("click", fxFlip);
+
+  function fxNum(n, dp){
+    return n.toLocaleString("en-CA", { minimumFractionDigits: dp, maximumFractionDigits: dp });
+  }
+  function fxRateStr(n){
+    // up to 6 significant digits, no trailing-zero noise
+    return n.toLocaleString("en-CA", { maximumSignificantDigits: 6 });
+  }
+  function fxDateLabel(iso){
+    var d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-CA", { year:"numeric", month:"long", day:"numeric" });
+  }
+
+  function fxConvert(){
+    var amt = parseFloat(fxAmount.value);
+    if (isNaN(amt) || amt < 0) amt = 0;
+    var from = fxFrom.value, to = fxTo.value;
+
+    var url = "/api/fx?from=" + from + "&to=" + to + "&amount=" + encodeURIComponent(amt);
+    if (fxMode === "date" && fxDate.value) url += "&date=" + fxDate.value;
+
+    fxResult.innerHTML = '<span class="muted">Fetching Bank of Canada rate&hellip;</span>';
+
+    fetch(url, { headers: { "Accept": "application/json" } })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok) {
+          fxResult.innerHTML = '<span class="fx-err">' + (d.error || "Could not get a rate.") + '</span>';
+          return;
+        }
+        var html = '<div class="fx-big"><span class="amt">' + fxNum(amt, 2) + ' ' + from + '</span> = ' +
+                   fxNum(d.result, 2) + ' ' + to + '</div>';
+        html += '<div class="fx-lines">';
+        html += '<div>1 ' + from + ' = ' + fxRateStr(d.rate) + ' ' + to + '</div>';
+        html += '<div>1 ' + to + ' = ' + fxRateStr(d.inverseRate) + ' ' + from + '</div>';
+        html += '</div>';
+        if (d.observationDate) {
+          var note = d.isLatest ? "Latest Bank of Canada rate (" + fxDateLabel(d.observationDate) + ")"
+                                : "Bank of Canada rate for " + fxDateLabel(d.observationDate);
+          if (!d.isLatest && fxDate.value && d.observationDate !== fxDate.value) {
+            note += " — nearest business day to your selection";
+          }
+          html += '<div class="fx-asof">' + note + '</div>';
+        }
+        fxResult.innerHTML = html;
+      })
+      .catch(function(){
+        fxResult.innerHTML = '<span class="fx-err">Network error. Please try again.</span>';
+      });
+  }
+
+  function fxDebounced(){ clearTimeout(fxTimer); fxTimer = setTimeout(fxConvert, 250); }
+  fxAmount.addEventListener("input", fxDebounced);
+  fxFrom.addEventListener("change", fxConvert);
+  fxTo.addEventListener("change", fxConvert);
+  fxDate.addEventListener("change", fxConvert);
+
+  fxConvert();
+</script>
+
+<!--#include virtual="/inc/footer.html" -->

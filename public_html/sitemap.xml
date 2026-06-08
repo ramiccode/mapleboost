@@ -13,6 +13,10 @@
     <lastmod>2026-06-07</lastmod>
   </url>
   <url>
+    <loc>https://mapleboost.ca/blog/how-to-incorporate-a-business-in-canada</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
     <loc>https://mapleboost.ca/blog/navan-business-travel-canada</loc>
     <lastmod>2026-06-08</lastmod>
   </url>
@@ -46,6 +50,42 @@
   <url>
     <loc>https://mapleboost.ca/data/provincial-tax-rates</loc>
     <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/exchange-rate-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/usd-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/eur-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/gbp-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/cny-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/mxn-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/jpy-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/aud-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/data/inr-to-cad-history</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
     <loc>https://mapleboost.ca/disclosure</loc>
@@ -145,7 +185,11 @@
   </url>
   <url>
     <loc>https://mapleboost.ca/tools</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-08</lastmod>
+  </url>
+  <url>
+    <loc>https://mapleboost.ca/tools/currency-converter</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
     <loc>https://mapleboost.ca/tools/gst-hst-calculator</loc>
